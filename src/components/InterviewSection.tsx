@@ -4,16 +4,17 @@ import { interviewQuestions } from '../data/content';
 // ============================================
 // ИНСТРУКЦИЯ: Как добавить медиафайлы
 // ============================================
-// 1. Аудиофайл:  public/media/IMG_0291 (2)-compressed (1).mov
+// 1. Аудиофайл:  public/media/interview.m4a
+//    (переименуйте ваш файл "Покровский бульвар 6.m4a" в "interview.m4a")
 // 2. Видеофайл:  public/media/interview-video.mp4
 // 3. Файлы автоматически появятся в интерфейсе
 // 
 // Поддерживаемые форматы:
-//   Аудио: .mov, .mp3, .ogg, .wav, .m4a
+//   Аудио: .m4a, .mp3, .ogg, .wav
 //   Видео: .mp4, .webm
 // ============================================
 
-const AUDIO_PATH = '/media/IMG_0291 (2)-compressed (1).mov';
+const AUDIO_PATH = '/media/interview.m4a';
 const VIDEO_PATH = '/media/interview-video.mp4';
 
 export default function InterviewSection() {
@@ -92,20 +93,27 @@ export default function InterviewSection() {
                   <p className="text-xs text-amber-300/80 mb-2">
                     ⚠️ Не удалось загрузить аудиофайл
                   </p>
-                  <p className="text-xs text-slate-500">
-                    Проверьте, что файл <code className="text-cyan-400/60 bg-white/5 px-1 rounded">IMG_0291 (2)-compressed (1).mov</code> находится в папке <code className="text-cyan-400/60 bg-white/5 px-1 rounded">public/media/</code>
+                  <p className="text-xs text-slate-500 mb-3">
+                    Проверьте, что файл <code className="text-cyan-400/60 bg-white/5 px-1 rounded">interview.m4a</code> находится в папке <code className="text-cyan-400/60 bg-white/5 px-1 rounded">public/media/</code>
                   </p>
+                  <button
+                    onClick={() => setAudioError(false)}
+                    className="text-xs text-cyan-400 hover:text-cyan-300 underline transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400/30 rounded px-1"
+                  >
+                    Попробовать снова
+                  </button>
                 </div>
               ) : (
                 <audio
+                  key={AUDIO_PATH}
                   controls
                   preload="metadata"
                   onError={() => setAudioError(true)}
                   className="w-full h-10 [&::-webkit-media-controls-panel]:bg-white/5"
                   style={{ width: '100%' }}
                 >
-                  <source src={AUDIO_PATH} type="video/quicktime" />
                   <source src={AUDIO_PATH} type="audio/mp4" />
+                  <source src={AUDIO_PATH} type="audio/x-m4a" />
                   Ваш браузер не поддерживает данный формат аудио.
                 </audio>
               )}
