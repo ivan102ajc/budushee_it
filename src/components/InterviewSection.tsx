@@ -4,16 +4,16 @@ import { interviewQuestions } from '../data/content';
 // ============================================
 // ИНСТРУКЦИЯ: Как добавить медиафайлы
 // ============================================
-// 1. Положите аудиофайл в:  public/media/interview-audio.mp3
-// 2. Положите видеофайл в:  public/media/interview-video.mp4
+// 1. Аудиофайл:  public/media/IMG_0291 (2)-compressed (1).mov
+// 2. Видеофайл:  public/media/interview-video.mp4
 // 3. Файлы автоматически появятся в интерфейсе
 // 
 // Поддерживаемые форматы:
-//   Аудио: .mp3, .ogg, .wav, .m4a
+//   Аудио: .mov, .mp3, .ogg, .wav, .m4a
 //   Видео: .mp4, .webm
 // ============================================
 
-const AUDIO_PATH = '/media/interview-audio.mp3';
+const AUDIO_PATH = '/media/IMG_0291 (2)-compressed (1).mov';
 const VIDEO_PATH = '/media/interview-video.mp4';
 
 export default function InterviewSection() {
@@ -90,10 +90,10 @@ export default function InterviewSection() {
               {audioError ? (
                 <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
                   <p className="text-xs text-amber-300/80 mb-2">
-                    ⚠️ Аудиофайл не загружен
+                    ⚠️ Не удалось загрузить аудиофайл
                   </p>
                   <p className="text-xs text-slate-500">
-                    Положите файл <code className="text-cyan-400/60 bg-white/5 px-1 rounded">interview-audio.mp3</code> в папку <code className="text-cyan-400/60 bg-white/5 px-1 rounded">public/media/</code>
+                    Проверьте, что файл <code className="text-cyan-400/60 bg-white/5 px-1 rounded">IMG_0291 (2)-compressed (1).mov</code> находится в папке <code className="text-cyan-400/60 bg-white/5 px-1 rounded">public/media/</code>
                   </p>
                 </div>
               ) : (
@@ -104,9 +104,9 @@ export default function InterviewSection() {
                   className="w-full h-10 [&::-webkit-media-controls-panel]:bg-white/5"
                   style={{ width: '100%' }}
                 >
-                  <source src={AUDIO_PATH} type="audio/mpeg" />
-                  <source src={AUDIO_PATH.replace('.mp3', '.ogg')} type="audio/ogg" />
-                  Ваш браузер не поддерживает аудио.
+                  <source src={AUDIO_PATH} type="video/quicktime" />
+                  <source src={AUDIO_PATH} type="audio/mp4" />
+                  Ваш браузер не поддерживает данный формат аудио.
                 </audio>
               )}
             </div>
