@@ -30,9 +30,10 @@ export default function InterviewSection() {
     setShowVideo(!showVideo);
   };
 
-  // Отладка: выводим путь к аудиофайлу в консоль
+  // Отладка: выводим пути к медиафайлам в консоль
   console.log('Audio path:', AUDIO_PATH);
-  console.log('Encoded path:', encodeURI('/media/Покровский бульвар 6.m4a'));
+  console.log('Video path:', VIDEO_PATH);
+  console.log('Encoded audio path:', encodeURI('/media/Покровский бульвар 6.m4a'));
 
   return (
     <section id="interview" className="relative py-20 md:py-32 px-4 md:px-8">
@@ -177,7 +178,13 @@ export default function InterviewSection() {
                       ref={videoRef}
                       controls
                       preload="metadata"
-                      onError={() => setVideoError(true)}
+                      onError={(e) => {
+                        console.error('Video error:', e);
+                        console.error('Video path:', VIDEO_PATH);
+                        setVideoError(true);
+                      }}
+                      onCanPlay={() => console.log('Video can play')}
+                      onLoadedMetadata={() => console.log('Video metadata loaded')}
                       className="w-full max-h-[400px] bg-black"
                       poster=""
                     >
