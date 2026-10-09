@@ -51,7 +51,7 @@ export const interviewQuestions = [
 
 export const blitzQuestions = [
   {
-    question: "Python или C?",
+    question: "Python или C++?",
     answer: "Java",
   },
   {

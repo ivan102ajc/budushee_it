@@ -89,13 +89,21 @@ export default function InterviewSection() {
               </div>
 
               {audioError ? (
-                <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
-                  <p className="text-xs text-amber-300/80 mb-2">
+                <div className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                  <p className="text-sm text-amber-300 font-medium mb-2">
                     ⚠️ Не удалось загрузить аудиофайл
                   </p>
-                  <p className="text-xs text-slate-500 mb-3">
-                    Проверьте, что файл <code className="text-cyan-400/60 bg-white/5 px-1 rounded">interview.m4a</code> находится в папке <code className="text-cyan-400/60 bg-white/5 px-1 rounded">public/media/</code>
-                  </p>
+                  <div className="text-xs text-slate-400 space-y-2 mb-3">
+                    <p>Возможные причины:</p>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>Файл не загружен в папку <code className="text-cyan-400/60 bg-white/5 px-1 rounded">public/media/</code></li>
+                      <li>Имя файла отличается от ожидаемого</li>
+                      <li>Формат файла не поддерживается браузером</li>
+                    </ul>
+                    <p className="mt-2">
+                      <strong className="text-white">Решение:</strong> Переименуйте ваш аудиофайл в <code className="text-cyan-400 bg-white/5 px-1.5 py-0.5 rounded font-mono">interview.m4a</code> и поместите в папку <code className="text-cyan-400 bg-white/5 px-1.5 py-0.5 rounded font-mono">public/media/</code>
+                    </p>
+                  </div>
                   <button
                     onClick={() => setAudioError(false)}
                     className="text-xs text-cyan-400 hover:text-cyan-300 underline transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400/30 rounded px-1"
@@ -114,6 +122,7 @@ export default function InterviewSection() {
                 >
                   <source src={AUDIO_PATH} type="audio/mp4" />
                   <source src={AUDIO_PATH} type="audio/x-m4a" />
+                  <source src={AUDIO_PATH} type="audio/m4a" />
                   Ваш браузер не поддерживает данный формат аудио.
                 </audio>
               )}
@@ -140,10 +149,18 @@ export default function InterviewSection() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                         </svg>
                       </div>
-                      <p className="text-sm text-amber-300/80 mb-1">Видеофайл не загружен</p>
-                      <p className="text-xs text-slate-500">
-                        Положите файл <code className="text-cyan-400/60 bg-white/5 px-1 rounded">interview-video.mp4</code> в папку <code className="text-cyan-400/60 bg-white/5 px-1 rounded">public/media/</code>
-                      </p>
+                      <p className="text-sm text-amber-300 font-medium mb-2">Видеофайл не загружен</p>
+                      <div className="text-xs text-slate-400 space-y-2 mb-3">
+                        <p>
+                          <strong className="text-white">Решение:</strong> Переименуйте ваш видеофайл в <code className="text-cyan-400 bg-white/5 px-1.5 py-0.5 rounded font-mono">interview-video.mp4</code> и поместите в папку <code className="text-cyan-400 bg-white/5 px-1.5 py-0.5 rounded font-mono">public/media/</code>
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => setVideoError(false)}
+                        className="text-xs text-cyan-400 hover:text-cyan-300 underline transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400/30 rounded px-1"
+                      >
+                        Попробовать снова
+                      </button>
                     </div>
                   ) : (
                     <video
