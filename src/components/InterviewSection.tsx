@@ -4,8 +4,7 @@ import { interviewQuestions, blitzQuestions } from '../data/content';
 // ============================================
 // ИНСТРУКЦИЯ: Как добавить медиафайлы
 // ============================================
-// 1. Аудиофайл:  public/media/interview.m4a
-//    (переименуйте ваш файл "Покровский бульвар 6.m4a" в "interview.m4a")
+// 1. Аудиофайл:  public/media/Покровский бульвар 6.m4a
 // 2. Видеофайл:  public/media/interview-video.mp4
 // 3. Файлы автоматически появятся в интерфейсе
 // 
@@ -14,7 +13,8 @@ import { interviewQuestions, blitzQuestions } from '../data/content';
 //   Видео: .mp4, .webm
 // ============================================
 
-const AUDIO_PATH = '/media/interview.m4a';
+// Используем encodeURI для корректной работы с кириллицей и пробелами
+const AUDIO_PATH = encodeURI('/media/Покровский бульвар 6.m4a');
 const VIDEO_PATH = '/media/interview-video.mp4';
 
 export default function InterviewSection() {
@@ -29,6 +29,10 @@ export default function InterviewSection() {
   const toggleVideo = () => {
     setShowVideo(!showVideo);
   };
+
+  // Отладка: выводим путь к аудиофайлу в консоль
+  console.log('Audio path:', AUDIO_PATH);
+  console.log('Encoded path:', encodeURI('/media/Покровский бульвар 6.m4a'));
 
   return (
     <section id="interview" className="relative py-20 md:py-32 px-4 md:px-8">
@@ -97,11 +101,11 @@ export default function InterviewSection() {
                     <p>Возможные причины:</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
                       <li>Файл не загружен в папку <code className="text-cyan-400/60 bg-white/5 px-1 rounded">public/media/</code></li>
-                      <li>Имя файла отличается от ожидаемого</li>
+                      <li>Имя файла отличается от <code className="text-cyan-400/60 bg-white/5 px-1 rounded">Покровский бульвар 6.m4a</code></li>
                       <li>Формат файла не поддерживается браузером</li>
                     </ul>
                     <p className="mt-2">
-                      <strong className="text-white">Решение:</strong> Переименуйте ваш аудиофайл в <code className="text-cyan-400 bg-white/5 px-1.5 py-0.5 rounded font-mono">interview.m4a</code> и поместите в папку <code className="text-cyan-400 bg-white/5 px-1.5 py-0.5 rounded font-mono">public/media/</code>
+                      <strong className="text-white">Решение:</strong> Убедитесь, что файл находится в папке <code className="text-cyan-400 bg-white/5 px-1.5 py-0.5 rounded font-mono">public/media/</code> с именем <code className="text-cyan-400 bg-white/5 px-1.5 py-0.5 rounded font-mono">Покровский бульвар 6.m4a</code>
                     </p>
                   </div>
                   <button
@@ -116,7 +120,13 @@ export default function InterviewSection() {
                   key={AUDIO_PATH}
                   controls
                   preload="metadata"
-                  onError={() => setAudioError(true)}
+                  onError={(e) => {
+                    console.error('Audio error:', e);
+                    console.error('Audio path:', AUDIO_PATH);
+                    setAudioError(true);
+                  }}
+                  onCanPlay={() => console.log('Audio can play')}
+                  onLoadedMetadata={() => console.log('Audio metadata loaded')}
                   className="w-full h-10 [&::-webkit-media-controls-panel]:bg-white/5"
                   style={{ width: '100%' }}
                 >
