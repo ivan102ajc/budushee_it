@@ -1,39 +1,26 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { interviewQuestions, blitzQuestions } from '../data/content';
 
 // ============================================
 // ИНСТРУКЦИЯ: Как добавить медиафайлы
 // ============================================
 // 1. Аудиофайл:  public/media/Покровский бульвар 6.m4a
-// 2. Видеофайл:  public/media/interview-video.mp4
+// 2. Видео: ссылка на Яндекс.Диск
+//    https://disk.yandex.ru/i/-UDyGYvA4CIiqQ
 // 3. Файлы автоматически появятся в интерфейсе
 // 
-// Поддерживаемые форматы:
-//   Аудио: .m4a, .mp3, .ogg, .wav
-//   Видео: .mp4, .webm
+// Поддерживаемые форматы аудио:
+//   .m4a, .mp3, .ogg, .wav
 // ============================================
 
 // Используем encodeURI для корректной работы с кириллицей и пробелами
 const AUDIO_PATH = encodeURI('/media/Покровский бульвар 6.m4a');
-const VIDEO_PATH = '/media/interview-video.mp4';
 
 export default function InterviewSection() {
   const [activeQuestion, setActiveQuestion] = useState<number>(1);
   const [audioError, setAudioError] = useState(false);
-  const [videoError, setVideoError] = useState(false);
-  const [showVideo, setShowVideo] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   const currentQuestion = interviewQuestions.find(q => q.id === activeQuestion);
-
-  const toggleVideo = () => {
-    setShowVideo(!showVideo);
-  };
-
-  // Отладка: выводим пути к медиафайлам в консоль
-  console.log('Audio path:', AUDIO_PATH);
-  console.log('Video path:', VIDEO_PATH);
-  console.log('Encoded audio path:', encodeURI('/media/Покровский бульвар 6.m4a'));
 
   return (
     <section id="interview" className="relative py-20 md:py-32 px-4 md:px-8">
@@ -139,62 +126,27 @@ export default function InterviewSection() {
               )}
             </div>
 
-            {/* Video toggle */}
+            {/* Video link */}
             <div className="mt-4">
-              <button
-                onClick={toggleVideo}
-                className="flex items-center gap-2 text-sm text-cyan-400/70 hover:text-cyan-400 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400/30 rounded px-2 py-1"
+              <a
+                href="https://disk.yandex.ru/i/-UDyGYvA4CIiqQ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-400/30 hover:bg-cyan-400/5 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-cyan-400/30"
               >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-                {showVideo ? 'Скрыть видео' : 'Показать видео'}
-              </button>
-
-              {showVideo && (
-                <div className="mt-3 rounded-xl overflow-hidden border border-white/10 animate-slide-in">
-                  {videoError ? (
-                    <div className="p-8 text-center bg-white/5">
-                      <div className="w-16 h-16 rounded-full bg-amber-500/10 flex items-center justify-center mx-auto mb-3">
-                        <svg className="w-8 h-8 text-amber-400/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                      <p className="text-sm text-amber-300 font-medium mb-2">Видеофайл не загружен</p>
-                      <div className="text-xs text-slate-400 space-y-2 mb-3">
-                        <p>
-                          <strong className="text-white">Решение:</strong> Переименуйте ваш видеофайл в <code className="text-cyan-400 bg-white/5 px-1.5 py-0.5 rounded font-mono">interview-video.mp4</code> и поместите в папку <code className="text-cyan-400 bg-white/5 px-1.5 py-0.5 rounded font-mono">public/media/</code>
-                        </p>
-                      </div>
-                      <button
-                        onClick={() => setVideoError(false)}
-                        className="text-xs text-cyan-400 hover:text-cyan-300 underline transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400/30 rounded px-1"
-                      >
-                        Попробовать снова
-                      </button>
-                    </div>
-                  ) : (
-                    <video
-                      ref={videoRef}
-                      controls
-                      preload="metadata"
-                      onError={(e) => {
-                        console.error('Video error:', e);
-                        console.error('Video path:', VIDEO_PATH);
-                        setVideoError(true);
-                      }}
-                      onCanPlay={() => console.log('Video can play')}
-                      onLoadedMetadata={() => console.log('Video metadata loaded')}
-                      className="w-full max-h-[400px] bg-black"
-                      poster=""
-                    >
-                      <source src={VIDEO_PATH} type="video/mp4" />
-                      <source src={VIDEO_PATH.replace('.mp4', '.webm')} type="video/webm" />
-                      Ваш браузер не поддерживает видео.
-                    </video>
-                  )}
+                <div className="w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-500/30 transition-colors">
+                  <svg className="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
                 </div>
-              )}
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm text-white font-medium">Видеозапись интервью</p>
+                  <p className="text-xs text-slate-500 truncate">disk.yandex.ru</p>
+                </div>
+                <svg className="w-4 h-4 text-slate-400 group-hover:text-cyan-400 transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
             </div>
           </div>
         </div>
