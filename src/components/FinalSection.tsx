@@ -52,17 +52,35 @@ export default function FinalSection() {
             Что мы узнали
           </h3>
           <div className="space-y-3">
-            <div className="p-3 rounded-lg bg-cyan-400/5 border border-cyan-400/10 flex items-center gap-3">
-              <div className="w-2 h-2 rounded-full bg-cyan-400/60 flex-shrink-0" />
-              <p className="text-sm text-slate-400 italic">Будет заполнено после анализа ответов преподавателя</p>
+            <div className="p-3 rounded-lg bg-cyan-400/5 border border-cyan-400/10 flex items-start gap-3">
+              <div className="w-2 h-2 rounded-full bg-cyan-400 flex-shrink-0 mt-1.5" />
+              <p className="text-sm text-slate-300">
+                <span className="font-medium text-white">IT — это повсюду.</span> От закусочных до умных городов: приложения, облачные сервисы и инженерия нужны в каждой сфере жизни.
+              </p>
             </div>
-            <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 flex items-center gap-3">
-              <div className="w-2 h-2 rounded-full bg-slate-500/60 flex-shrink-0" />
-              <p className="text-sm text-slate-500 italic">Ожидание материалов интервью...</p>
+            <div className="p-3 rounded-lg bg-cyan-400/5 border border-cyan-400/10 flex items-start gap-3">
+              <div className="w-2 h-2 rounded-full bg-cyan-400 flex-shrink-0 mt-1.5" />
+              <p className="text-sm text-slate-300">
+                <span className="font-medium text-white">Топ направлений:</span> искусственный интеллект, большие данные и интернет вещей — именно здесь формируется будущее технологий.
+              </p>
             </div>
-            <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 flex items-center gap-3">
-              <div className="w-2 h-2 rounded-full bg-slate-500/60 flex-shrink-0" />
-              <p className="text-sm text-slate-500 italic">Ожидание материалов интервью...</p>
+            <div className="p-3 rounded-lg bg-cyan-400/5 border border-cyan-400/10 flex items-start gap-3">
+              <div className="w-2 h-2 rounded-full bg-cyan-400 flex-shrink-0 mt-1.5" />
+              <p className="text-sm text-slate-300">
+                <span className="font-medium text-white">Преподавателя не заменит ИИ.</span> Живое общение и наставничество остаются ключевыми в образовании.
+              </p>
+            </div>
+            <div className="p-3 rounded-lg bg-cyan-400/5 border border-cyan-400/10 flex items-start gap-3">
+              <div className="w-2 h-2 rounded-full bg-cyan-400 flex-shrink-0 mt-1.5" />
+              <p className="text-sm text-slate-300">
+                <span className="font-medium text-white">Портфолио решает.</span> Реальные проекты, соответствующие специализации, ценятся больше всего при поступлении и трудоустройстве.
+              </p>
+            </div>
+            <div className="p-3 rounded-lg bg-cyan-400/5 border border-cyan-400/10 flex items-start gap-3">
+              <div className="w-2 h-2 rounded-full bg-cyan-400 flex-shrink-0 mt-1.5" />
+              <p className="text-sm text-slate-300">
+                <span className="font-medium text-white">Главное — интерес.</span> Увлечение предметом и упорство важнее, чем выбор конкретного языка программирования.
+              </p>
             </div>
           </div>
         </div>

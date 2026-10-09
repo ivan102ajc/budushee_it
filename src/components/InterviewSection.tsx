@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { interviewQuestions } from '../data/content';
+import { interviewQuestions, blitzQuestions } from '../data/content';
 
 // ============================================
 // ИНСТРУКЦИЯ: Как добавить медиафайлы
@@ -205,33 +205,11 @@ export default function InterviewSection() {
                 {currentQuestion?.title}
               </h4>
               
-              {currentQuestion?.answer ? (
-                <div className="flex-1">
-                  <p className="text-slate-300 leading-relaxed text-base md:text-lg">
-                    {currentQuestion.answer}
-                  </p>
-                </div>
-              ) : (
-                <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
-                  <div className="w-16 h-16 rounded-full bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mb-4">
-                    <svg className="w-7 h-7 text-cyan-400/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                    </svg>
-                  </div>
-                  <p className="text-cyan-400/70 font-medium mb-2">
-                    {currentQuestion?.placeholder}
-                  </p>
-                  <p className="text-slate-500 text-sm max-w-md">
-                    Этот раздел будет заполнен после проведения интервью с преподавателем. Ответ появится здесь.
-                  </p>
-                  
-                  {/* Audio record indicator */}
-                  <div className="mt-6 flex items-center gap-2 text-slate-500">
-                    <div className="w-2 h-2 rounded-full bg-red-400/60 animate-pulse" />
-                    <span className="text-xs">Ожидание записи</span>
-                  </div>
-                </div>
-              )}
+              <div className="flex-1">
+                <p className="text-slate-300 leading-relaxed text-base md:text-lg whitespace-pre-line">
+                  {currentQuestion?.answer}
+                </p>
+              </div>
 
               {/* Navigation */}
               <div className="mt-6 pt-4 border-t border-white/5 flex justify-between">
@@ -257,6 +235,30 @@ export default function InterviewSection() {
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Blitz Survey */}
+        <div className="mt-16 md:mt-20">
+          <div className="mb-8">
+            <p className="text-cyan-400/70 text-sm tracking-widest uppercase mb-3">Блиц-опрос</p>
+            <h3 className="text-2xl md:text-3xl font-bold text-white">
+              Быстрые ответы
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {blitzQuestions.map((item, index) => (
+              <div
+                key={index}
+                className="glass-panel p-5 hover:border-cyan-400/30 transition-all duration-300 group"
+              >
+                <p className="text-sm text-slate-400 mb-2">{item.question}</p>
+                <p className="text-lg font-semibold text-cyan-300 group-hover:text-cyan-200 transition-colors">
+                  {item.answer}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
