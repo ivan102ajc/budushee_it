@@ -79,7 +79,7 @@ export default function InterviewSection() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-sm text-white font-medium">Аудио интервью</p>
+                    <p className="text-sm text-white font-medium">Аудиозапись интервью</p>
                     <p className="text-xs text-slate-500">
                       {audioError ? 'Файл не найден' : 'Запись беседы с преподавателем'}
                     </p>
