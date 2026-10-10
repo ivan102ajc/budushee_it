@@ -32,22 +32,25 @@ export default function InterviewSection() {
               ))}
             </div>
             
-            {/* Аудиозапись — ссылка на Яндекс.Диск */}
-            <a href="https://disk.yandex.ru/d/Pokrovsky_bulvar_6" target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-400/30 hover:bg-cyan-400/5 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-cyan-400/30">
-              <div className="w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-500/30 transition-colors">
-                <svg className="w-5 h-5 text-cyan-400" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-                </svg>
+            {/* Аудиозапись интервью */}
+            <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-3">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 text-cyan-400" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-sm text-white font-medium">Аудиозапись интервью</p>
+                  <p className="text-xs text-slate-500">Покровский бульвар 6.m4a</p>
+                </div>
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm text-white font-medium">Аудиозапись интервью</p>
-                <p className="text-xs text-slate-500 truncate">Покровский бульвар 6.m4a</p>
-              </div>
-              <svg className="w-4 h-4 text-slate-400 group-hover:text-cyan-400 transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </a>
+              <audio controls preload="metadata" className="w-full h-10" style={{ width: '100%' }}>
+                <source src={encodeURI('/media/Покровский бульвар 6.m4a')} type="audio/mp4" />
+                <source src={encodeURI('/media/Покровский бульвар 6.m4a')} type="audio/x-m4a" />
+                Ваш браузер не поддерживает воспроизведение аудио.
+              </audio>
+            </div>
 
             <div className="mt-4">
               <a href="https://disk.yandex.ru/i/-UDyGYvA4CIiqQ" target="_blank" rel="noopener noreferrer"
