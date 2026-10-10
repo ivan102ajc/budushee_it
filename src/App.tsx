@@ -14,9 +14,7 @@ function App() {
     <div className="min-h-screen bg-[#0a1628] text-slate-200">
       <Navigation />
       <main>
-        <div id="hero">
-          <HeroSection />
-        </div>
+        <div id="hero"><HeroSection /></div>
         <SectionDivider variant="circuit" />
         <ResearchQuestions />
         <SectionDivider variant="dots" />
